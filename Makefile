@@ -5,7 +5,7 @@ PKG = backline
 ELS   = $(PKG).el
 ELCS  = $(ELS:.el=.elc)
 
-DEPS  =
+DEPS  = outline-minor-faces
 
 EMACS      ?= emacs
 EMACS_ARGS ?=

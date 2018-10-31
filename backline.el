@@ -6,7 +6,7 @@
 ;; Homepage: https://github.com/tarsius/bicycle
 ;; Keywords: outlines
 
-;; Package-Requires: ((emacs "26.1"))
+;; Package-Requires: ((emacs "26.1") (outline-minor-faces "0.1.0"))
 
 ;; This file is not part of GNU Emacs.
 
