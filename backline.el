@@ -3,7 +3,7 @@
 ;; Copyright (C) 2018 Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
-;; Homepage: https://github.com/tarsius/bicycle
+;; Homepage: https://github.com/tarsius/backline
 ;; Keywords: outlines
 
 ;; Package-Requires: ((emacs "26.1") (outline-minor-faces "0.1.0"))
