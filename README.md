@@ -18,3 +18,17 @@ that and is required by this package.
   :after outline
   :config (advice-add 'outline-flag-region :after 'backline-update))
 ```
+
+### Screenshots
+
+#### Backline and Outline-Minor-Faces
+
+![best](http://readme.emacsair.me/backline-best.png)
+
+#### Outline-Minor-Faces only
+
+![best](http://readme.emacsair.me/backline-better.png)
+
+#### Neither
+
+![best](http://readme.emacsair.me/backline-vanilla.png)
