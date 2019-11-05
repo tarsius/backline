@@ -2,7 +2,7 @@ Preserve appearance of collapsed outline headings until right window edge
 -------------------------------------------------------------------------
 
 An outline heading does not extend to the right edge of the window
-when its body is collapsed.  This is unfortuante when the used face
+when its body is collapsed.  This is unfortunate when the used face
 sets the background color or another property that is visible on
 whitespace.  This package adds overlays to extend the appearance of
 headings all the way to the right window edge.
