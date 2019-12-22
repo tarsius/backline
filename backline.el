@@ -1,12 +1,12 @@
 ;;; backline.el --- Preserve appearance of outline headings  -*- lexical-binding: t -*-
 
-;; Copyright (C) 2018 Jonas Bernoulli
+;; Copyright (C) 2018-2019 Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <jonas@bernoul.li>
 ;; Homepage: https://github.com/tarsius/backline
 ;; Keywords: outlines
 
-;; Package-Requires: ((emacs "25.1") (outline-minor-faces "0.1.0"))
+;; Package-Requires: ((emacs "25.1") (outline-minor-faces "0.1.2"))
 
 ;; This file is not part of GNU Emacs.
 
