@@ -49,7 +49,6 @@
 ;;;###autoload
 (defun backline-update (from to _hide)
   "When hidings, add an overlay to extend header's appearance to window edge."
-  ;; TODO Also support `outline-mode' and `org-mode'.
   (when outline-minor-mode
     ;; `outline-hide-sublevels' tries to hide this range, in which case
     ;; `outline-back-to-heading' somehow concludes that point is before
