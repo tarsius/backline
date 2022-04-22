@@ -6,7 +6,7 @@
 ;; Homepage: https://github.com/tarsius/backline
 ;; Keywords: outlines
 
-;; Package-Requires: ((emacs "25.1") (outline-minor-faces "0.1.2"))
+;; Package-Requires: ((emacs "25.1") (compat "28.1.1.0") (outline-minor-faces "0.1.2"))
 
 ;; This file is not part of GNU Emacs.
 
@@ -42,6 +42,8 @@
 ;;     :config (advice-add 'outline-flag-region :after 'backline-update))
 
 ;;; Code:
+
+(require 'compat)
 
 (require 'outline)
 (require 'outline-minor-faces)
