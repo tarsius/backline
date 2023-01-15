@@ -31,3 +31,8 @@ required by this package.
 **** Neither
 
 [[http://readme.emacsair.me/backline-vanilla.png]]
+
+#+html: <br><br>
+#+html: <a href="https://github.com/tarsius/backline/actions/workflows/compile.yml"><img alt="Compile" src="https://github.com/tarsius/backline/actions/workflows/compile.yml/badge.svg"/></a>
+#+html: <a href="https://stable.melpa.org/#/backline"><img alt="MELPA Stable" src="https://stable.melpa.org/packages/backline-badge.svg"/></a>
+#+html: <a href="https://melpa.org/#/backline"><img alt="MELPA" src="https://melpa.org/packages/backline-badge.svg"/></a>
