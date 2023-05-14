@@ -1,4 +1,4 @@
-*** Preserve appearance of collapsed outline headings until right window edge
+*** Preserve appearance of collapsed outline headings until window edge
 
 An outline heading does not extend to the right edge of the window
 when its body is collapsed.  This is unfortunate when the used face
