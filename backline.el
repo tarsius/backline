@@ -8,7 +8,7 @@
 
 ;; Package-Requires: (
 ;;     (emacs "25.1")
-;;     (compat "29.1.4.1")
+;;     (compat "30.0.0.0")
 ;;     (outline-minor-faces "0.1.2"))
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
