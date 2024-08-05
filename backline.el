@@ -7,9 +7,9 @@
 ;; Keywords: outlines
 
 ;; Package-Requires: (
-;;     (emacs "25.1")
+;;     (emacs "26.1")
 ;;     (compat "30.0.0.0")
-;;     (outline-minor-faces "0.1.2"))
+;;     (outline-minor-faces "1.0.2"))
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
