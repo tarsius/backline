@@ -60,44 +60,41 @@
 (require 'outline-minor-faces)
 
 ;;;###autoload
-(defun backline-update (from to _hide)
-  "When hidings, add an overlay to extend header's appearance to window edge."
+(defun backline-update (from to _flag)
+  "For collapsed sections extend their headers' appearance to the window edge.
+Do nothing if `outline-minor-mode' isn't enable in the current buffer."
   (when outline-minor-mode
-    ;; `outline-hide-sublevels' tries to hide this range, in which case
-    ;; `outline-back-to-heading' somehow concludes that point is before
-    ;; the first heading causing it to raise an error.  Luckily we don't
-    ;; actually have to do anything for that range, so we can just skip
-    ;; ahead to the calls that hide the subtrees individually.
-    (unless (and (= from   (point-min))
-                 (= to (1- (point-max))))
-      (ignore-errors ; Other instances of "before first heading" error.
-        (remove-overlays from
-                         (save-excursion
-                           (goto-char to)
-                           (outline-end-of-subtree)
-                           (1+ (point)))
-                         'backline-heading t)
-        (dolist (ov (overlays-in (max (1- from) (point-min))
-                                 (min (1+ to)   (point-max))))
-          (when (eq (overlay-get ov 'invisible) 'outline)
-            (let ((end (overlay-end ov)))
-              (unless (save-excursion
-                        (goto-char end)
-                        (outline-back-to-heading)
-                        ;; If we depended on `bicycle', then we could use:
-                        ;; (bicycle--code-level-p)
-                        (= (funcall outline-level)
-                           (or (bound-and-true-p outline-code-level) 1000)))
-                (let ((o (make-overlay end
-                                       (min (1+ end) (point-max))
-                                       nil 'front-advance)))
-                  (overlay-put o 'evaporate t)
-                  (overlay-put o 'backline-heading t)
-                  (overlay-put o 'face
-                               (save-excursion
-                                 (goto-char end)
-                                 (outline-back-to-heading)
-                                 (outline-minor-faces--get-face))))))))))))
+    (remove-overlays
+     from
+     (save-excursion
+       (goto-char to)
+       ;; `elisp-outline-search' (new in Emacs 31) is too slow and since
+       ;; we only care about outline headings anyway, of no use here.
+       (let ((outline-search-function nil))
+         ;; When `outline-hide-sublevels' calls `outline-back-to-heading'
+         ;; that searches backward from the very beginning of the buffer.
+         (condition-case nil
+             (outline-end-of-subtree)
+           (outline-before-first-heading (goto-char (point-max)))))
+       (min (1+ (point)) (point-max)))
+     'backline-heading t)
+    (let ((toplvl (outline-minor-faces--top-level)))
+      (dolist (ov (overlays-in (max (1- from) (point-min))
+                               (min (1+ to)   (point-max))))
+        (when (eq (overlay-get ov 'invisible) 'outline)
+          (save-excursion
+            (goto-char (overlay-start ov))
+            (goto-char (line-beginning-position))
+            (let ((end (overlay-end ov))
+                  (lvl (funcall outline-level)))
+              (unless (= lvl 1000)
+                (let ((face (aref outline-minor-faces
+                                  (% (- lvl toplvl)
+                                     (length outline-minor-faces))))
+                      (ov (make-overlay end (min (1+ end) (point-max)) nil t)))
+                  (overlay-put ov 'evaporate t)
+                  (overlay-put ov 'backline-heading t)
+                  (overlay-put ov 'face face))))))))))
 
 ;;; _
 (provide 'backline)
