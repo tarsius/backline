@@ -59,6 +59,8 @@
 (require 'outline)
 (require 'outline-minor-faces)
 
+(defvar outline-search-function) ;since Emacs 29.1
+
 ;;;###autoload
 (defun backline-update (from to _flag)
   "For collapsed sections extend their headers' appearance to the window edge.
