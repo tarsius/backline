@@ -82,7 +82,11 @@ Do nothing if `outline-minor-mode' isn't enable in the current buffer."
             (goto-char (overlay-start ov))
             (goto-char (line-beginning-position))
             (let ((end (overlay-end ov))
-                  (lvl (funcall outline-level)))
+                  (lvl (if (eq outline-level 'lisp-outline-level)
+                           ;; Known to use `looking-at' internally.
+                           (lisp-outline-level)
+                         (looking-at outline-regexp)
+                         (funcall outline-level))))
               (unless (= lvl 1000)
                 (let ((face (aref outline-minor-faces
                                   (% (- lvl toplvl)
