@@ -78,11 +78,10 @@ Do nothing if `outline-minor-mode' isn't enable in the current buffer."
          (condition-case nil
              (outline-end-of-subtree)
            (outline-before-first-heading (goto-char (point-max)))))
-       (min (1+ (point)) (point-max)))
+       (1+ (point)))
      'backline-heading t)
     (let ((toplvl (outline-minor-faces--top-level)))
-      (dolist (ov (overlays-in (max (1- from) (point-min))
-                               (min (1+ to)   (point-max))))
+      (dolist (ov (overlays-in (1- from) (1+ to)))
         (when (eq (overlay-get ov 'invisible) 'outline)
           (save-excursion
             (goto-char (overlay-start ov))
