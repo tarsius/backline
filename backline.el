@@ -66,8 +66,15 @@
   "For collapsed sections extend their headers' appearance to the window edge.
 Do nothing if `outline-minor-mode' isn't enable in the current buffer."
   (when outline-minor-mode
-    (remove-overlays from (1+ (backline--end-of-subtree to))
-                     'backline-heading t)
+    ;; The two (dolist (ov (overlays-in ...)) ...) operate on very
+    ;; different regions and thus cannot be merged.  Here we purge
+    ;; the `backline' overlays of all children.  Below we may only
+    ;; deal with one section; should individual children need to be
+    ;; "flagged", then we are called again, and deal with *adding*
+    ;; new `backline' overlays then, if required; and individually.
+    (dolist (ov (overlays-in from (1+ (backline--end-of-subtree to))))
+      (when (eq (overlay-get ov 'backline-heading) t)
+        (delete-overlay ov)))
     (let ((toplvl (outline-minor-faces--top-level)))
       (dolist (ov (overlays-in (1- from) (1+ to)))
         (when (eq (overlay-get ov 'invisible) 'outline)
