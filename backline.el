@@ -66,20 +66,8 @@
   "For collapsed sections extend their headers' appearance to the window edge.
 Do nothing if `outline-minor-mode' isn't enable in the current buffer."
   (when outline-minor-mode
-    (remove-overlays
-     from
-     (save-excursion
-       (goto-char to)
-       ;; `elisp-outline-search' (new in Emacs 31) is too slow and since
-       ;; we only care about outline headings anyway, of no use here.
-       (let ((outline-search-function nil))
-         ;; When `outline-hide-sublevels' calls `outline-back-to-heading'
-         ;; that searches backward from the very beginning of the buffer.
-         (condition-case nil
-             (outline-end-of-subtree)
-           (outline-before-first-heading (goto-char (point-max)))))
-       (1+ (point)))
-     'backline-heading t)
+    (remove-overlays from (1+ (backline--end-of-subtree to))
+                     'backline-heading t)
     (let ((toplvl (outline-minor-faces--top-level)))
       (dolist (ov (overlays-in (1- from) (1+ to)))
         (when (eq (overlay-get ov 'invisible) 'outline)
@@ -96,6 +84,19 @@ Do nothing if `outline-minor-mode' isn't enable in the current buffer."
                   (overlay-put ov 'evaporate t)
                   (overlay-put ov 'backline-heading t)
                   (overlay-put ov 'face face))))))))))
+
+(defun backline--end-of-subtree (pos)
+  (save-excursion
+    (goto-char pos)
+    (condition-case nil
+        ;; `elisp-outline-search' (new in Emacs 31) is too slow and since
+        ;; we only care about outline headings anyway, of no use here.
+        (let ((outline-search-function nil))
+          (outline-end-of-subtree))
+      ;; When `outline-hide-sublevels' calls `outline-back-to-heading'
+      ;; that searches backward from the very beginning of the buffer.
+      (outline-before-first-heading (goto-char (point-max))))
+    (point)))
 
 ;;; _
 (provide 'backline)
