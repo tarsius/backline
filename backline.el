@@ -75,10 +75,10 @@ Do nothing if `outline-minor-mode' isn't enable in the current buffer."
     (dolist (ov (overlays-in from (1+ (backline--end-of-subtree to))))
       (when (eq (overlay-get ov 'backline-heading) t)
         (delete-overlay ov)))
-    (let ((toplvl (outline-minor-faces--top-level)))
-      (dolist (ov (overlays-in (1- from) (1+ to)))
-        (when (eq (overlay-get ov 'invisible) 'outline)
-          (save-excursion
+    (save-excursion
+      (let ((toplvl (outline-minor-faces--top-level)))
+        (dolist (ov (overlays-in (1- from) (1+ to)))
+          (when (eq (overlay-get ov 'invisible) 'outline)
             (goto-char (overlay-start ov))
             (goto-char (line-beginning-position))
             (let ((end (overlay-end ov))
