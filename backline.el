@@ -6,11 +6,11 @@
 ;; Homepage: https://github.com/tarsius/backline
 ;; Keywords: outlines
 
-;; Package-Version: 1.0.2
+;; Package-Version: 1.1.0
 ;; Package-Requires: (
 ;;     (emacs "26.1")
-;;     (compat "30.0.0.0")
-;;     (outline-minor-faces "1.0.2"))
+;;     (compat "30.1")
+;;     (outline-minor-faces "1.1.3"))
 
 ;; SPDX-License-Identifier: GPL-3.0-or-later
 
