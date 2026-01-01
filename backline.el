@@ -1,6 +1,6 @@
 ;;; backline.el --- Preserve appearance of outline headings  -*- lexical-binding:t -*-
 
-;; Copyright (C) 2018-2025 Jonas Bernoulli
+;; Copyright (C) 2018-2026 Jonas Bernoulli
 
 ;; Author: Jonas Bernoulli <emacs.backline@jonas.bernoulli.dev>
 ;; Homepage: https://github.com/tarsius/backline
