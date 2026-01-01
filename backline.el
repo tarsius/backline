@@ -113,5 +113,6 @@ Do nothing if `outline-minor-mode' isn't enable in the current buffer."
 (provide 'backline)
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lisp-indent-local-overrides: ((cond . 0) (interactive . 0))
 ;; End:
 ;;; backline.el ends here
