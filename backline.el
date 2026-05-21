@@ -8,7 +8,7 @@
 
 ;; Package-Version: 1.2.2
 ;; Package-Requires: (
-;;     (emacs              "27.1")
+;;     (emacs              "28.1")
 ;;     (compat             "30.1")
 ;;     (outline-minor-faces "1.2"))
 
@@ -47,10 +47,10 @@
 ;;     :config (add-hook 'outline-minor-mode-hook
 ;;                       #'outline-minor-faces-mode))
 
-;; Do NOT set `outline-minor-mode-highlight' (provided by `outline' since
-;; Emacs 28.1) to a non-nil value, because that is incompatible with this
-;; package and `outline-minor-faces' (which is an older and still superior
-;; alternative).  See `outline-minor-faces' for details.
+;; Do NOT set `outline-minor-mode-highlight' to a non-nil value, because
+;; that is incompatible with this package and `outline-minor-faces' (which
+;; is an older and still superior alternative).  See `outline-minor-faces'
+;; for details.
 
 ;;; Code:
 
